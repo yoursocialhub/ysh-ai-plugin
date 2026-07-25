@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "ysh-plugins",
+  "owner": {
+    "name": "Your Social Hub",
+    "url": "https://www.yoursocialhub.online"
+  },
+  "description": "Plugins for Your Social Hub.",
+  "plugins": [
+    {
+      "name": "your-social-hub",
+      "source": "./",
+      "description": "Plan, draft and audit social content in Your Social Hub. Drafts always land in review — nothing is published, scheduled or approved from here.",
+      "category": "productivity",
+      "tags": ["social-media", "content-calendar", "content-review", "mcp"]
+    }
+  ]
+}
