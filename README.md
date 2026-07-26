@@ -8,17 +8,12 @@ Full capability reference: [info.md](info.md).
 
 ## Install
 
-**Cowork** — Customize → Plugins → Personal plugins → **+** → Add marketplace from GitHub → `yoursocialhub/ysh-ai-plugin`, then install **Your Social Hub** and connect it.
+| Where | How |
+| --- | --- |
+| **Claude Cowork** | [Step-by-step guide with screenshots](install-guide/cowork.md) — five minutes, no terminal |
+| **Claude Code** | `/plugin marketplace add yoursocialhub/ysh-ai-plugin`, then `/plugin install your-social-hub@ysh-plugins`, then `/mcp` → `your-social-hub` → Authenticate |
 
-**Claude Code**
-
-```bash
-/plugin marketplace add yoursocialhub/ysh-ai-plugin
-/plugin install your-social-hub@ysh-plugins
-/mcp                       # → your-social-hub → Authenticate
-```
-
-Connecting opens a browser: sign in to Your Social Hub, then tick the scopes on the consent screen. You need the `content_creator` or `admin` role in at least one hub — a reviewer-only account can consent but reaches no data.
+Installing and connecting are separate steps, and both are required. Connecting opens a browser: sign in to Your Social Hub, then tick the scopes on the consent screen. You need the `content_creator` or `admin` role in at least one hub — a reviewer-only account can consent but reaches no data.
 
 ## Contents
 
