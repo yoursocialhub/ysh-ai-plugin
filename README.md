@@ -18,6 +18,8 @@ Full capability reference: [info.md](info.md).
 /plugin marketplace add yoursocialhub/ysh-ai-plugin
 ```
 
+Use that address exactly — `owner/repo`, nothing else. A browser URL copied from the address bar (`https://github.com/yoursocialhub/ysh-ai-plugin/tree/main`) is not a git remote and fails with *repository not found*, and so does a `.git` suffix on the shorthand. `https://github.com/yoursocialhub/ysh-ai-plugin` works too.
+
 2. Install the plugin:
 
 ```
@@ -59,6 +61,10 @@ content-calendars:write content:write ideas:write offline_access
 The consent screen lets you grant a narrower set. An ungranted scope means its tools are absent from the toolset rather than failing — `/your-social-hub:check` reports exactly what that leaves. `promote_idea_to_content` needs `content:write` **and** `ideas:write`. Widening the pinned set requires a plugin version bump.
 
 Revoke any time in Your Social Hub: Profile & Billing → Connected Apps.
+
+## License
+
+[Apache-2.0](LICENSE). The plugin only; the Your Social Hub platform and its MCP server are separate works. See [NOTICE](NOTICE) for the trademark terms.
 
 ## Development
 

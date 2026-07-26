@@ -2,7 +2,7 @@
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "your-social-hub",
   "displayName": "Your Social Hub",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Plan, draft and audit social content in Your Social Hub. Reads your hubs, content calendars, content and ideas, and writes drafts that always land in review — it can never publish, schedule, approve or delete.",
   "author": {
     "name": "Your Social Hub",
@@ -10,6 +10,6 @@
   },
   "homepage": "https://www.yoursocialhub.online",
   "repository": "https://github.com/yoursocialhub/ysh-ai-plugin",
-  "license": "UNLICENSED",
+  "license": "Apache-2.0",
   "keywords": ["social-media", "content-calendar", "ideas-hub", "content-review", "mcp"]
 }

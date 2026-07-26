@@ -16,6 +16,13 @@ You need three things:
 
 You do **not** need to install anything else, use a terminal, or know what MCP or OAuth mean.
 
+**One thing that is not up to you.** Installing any third-party plugin has to be permitted for your account:
+
+- **Personal plans (Pro, Max):** it just works, on a reasonably recent desktop app. Plugin marketplaces are still in beta and need Claude Desktop 1.17377.1 or later — if **Add marketplace** is missing or the install does nothing, update the app first.
+- **Team and Enterprise plans:** an Owner has to have enabled **Cowork** *and* **Skills** for the organization, and third-party plugins have to be allowed. Until then the **Add** button, the marketplace, or the **Install** button either does not appear or does nothing when clicked — with no explanation of why.
+
+This is the usual reason the same repository installs fine for one person and refuses for their colleague. If you are on a work account and the steps below stop working for no visible reason, ask whoever owns your Claude organization before debugging anything else. If they cannot enable it, use the zip that ships with each release: **Plugins → Add → Upload plugin**, which does not go through a marketplace at all.
+
 ---
 
 ## Step 1 — Open the plugin settings
@@ -39,6 +46,8 @@ In the **URL** field, type exactly:
 ```
 yoursocialhub/ysh-ai-plugin
 ```
+
+The field is labelled **URL**, but it wants exactly those two words separated by one slash — **not** a web address. Do not paste the link from your browser's address bar: `https://github.com/yoursocialhub/ysh-ai-plugin/tree/main` looks right and fails with *repository not found*, because the `/tree/main` part is a GitHub page, not the repository itself. This is the single most common reason the install does not work.
 
 Leave **Sync automatically** switched on — that is what keeps the plugin up to date when we ship improvements.
 
@@ -107,7 +116,8 @@ If Claude names your hubs, you are done. Everything else — planning a week, au
 | What you see | What it means | What to do |
 | --- | --- | --- |
 | No **Plugins** entry in the sidebar | You are in the web app, not the desktop app | Open the Claude desktop app and try again |
-| "Marketplace not found" after Sync | Typo in the address | It is `yoursocialhub/ysh-ai-plugin` — no `https://`, no `.git`, one slash |
+| No **Add** button, or **Install** does nothing and no error appears | Your account is not allowed to install third-party plugins — a Team/Enterprise org without Cowork and Skills enabled, or an outdated app | Update the desktop app; if you are on a work account, ask a Claude organization Owner to enable Cowork, Skills and third-party plugins. Meanwhile install from the release zip via **Add → Upload plugin** |
+| "Marketplace not found", "repository not found", or the plugin will not install after Sync | The address is not a repository address — usually a link copied from the browser | Retype it by hand as `yoursocialhub/ysh-ai-plugin`: one slash, no `https://`, no `.git`, and **no `/tree/main` on the end**. Then Sync again |
 | Plugin installed, but Claude ignores your hub | Installed but not connected | Go back to Step 6 — installing and connecting are separate |
 | Claude says it has no such tools | The connector is disconnected, or permissions were unticked | Run **check**, then reconnect from the plugin's Connectors tab |
 | "You don't have access" on every hub | Your account is reviewer-only | Ask a hub admin for the `content_creator` role |
