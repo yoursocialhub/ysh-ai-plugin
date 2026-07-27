@@ -70,7 +70,7 @@ Only `approved` **with** a `publicationDate` is actually armed to go out. `appro
 The three `metrics:read` tools read performance data the platforms reported back. `range` is `7d`, `30d` or `90d` — nothing else, no custom window, `30d` by default, `90d` the ceiling.
 
 - `get_hub_metrics_overview(hubId, range)` → `totals` (`followers`, `posts`, `engagement`, `views`) plus the same per-account rows `list_social_accounts` returns. One call answers "how is the hub doing".
-- `list_social_accounts(hubId, range)` → per account: `id`, `accountType`, `name`, `metricsAvailable`, `followers`, `postsInRange`, `engagementInRange`, `initialMetricsCollectedAt`. Its `id` is the `socialAccountId` for the next call.
+- `list_social_accounts(hubId, range)` → per account: `id`, `accountType`, `name`, `metricsStatus`, `metricsAvailable`, `followers`, `postsInRange`, `engagementInRange`, `initialMetricsCollectedAt`, `initialMetricsFailedAt`. Its `id` is the `socialAccountId` for the next call.
 - `list_top_performing_posts(socialAccountId, metric, range, page, perPage)` → posts ranked highest first. `metric` is one of `views` (default), `reach`, `reactions`, `comments`, `shares`, `saves`, `reposts`, `quotes`, `pinClicks`, `outboundClicks`. Rows also carry `videoViews`, which cannot be ranked by.
 
 Working with these is `metrics-review`; feeding the winners back into the Ideas Hub is `top-posts-to-ideas`.
@@ -78,7 +78,7 @@ Working with these is `metrics-review`; feeding the winners back into the Ideas 
 ## Traps
 
 - **The metrics tools need `admin`, not `content_creator`.** They are the only tools with a higher bar, matching the app's admin-only metrics dashboard. A `content_creator` gets the same `"Not found"` as a bad id. Read `yourRole` from `list_hubs` first and say "your role is content_creator" rather than reporting "no data".
-- **A metric `null` means "not collected", never zero.** Do not sum, average or rank it as `0`, and do not report "0 followers". `metricsAvailable: true` only says the platform has an insights dashboard — live collection currently covers Facebook and Instagram, so other platforms can return `metricsAvailable: true` with every value `null`. `initialMetricsCollectedAt: null` means the first collection has not landed yet.
+- **A metric `null` means "not collected", never zero.** Do not sum, average or rank it as `0`, and do not report "0 followers". `metricsStatus` says why the row is empty — `ready`, `pending`, `failed` or `unsupported` — and only `ready` means the numbers are real. Live collection currently covers Facebook and Instagram, so a connected account on another platform can sit at `pending` indefinitely. Fall back to `initialMetricsCollectedAt: null` if the server does not return `metricsStatus`.
 - **Metrics ranges filter posts by publish date.** `list_top_performing_posts` with `7d` ranks only posts published in the last seven days — it is not an all-time leaderboard. `90d` is as far back as this connector reaches.
 - **`postsInRange` is not your content count.** It counts what the platform published, including posts made natively outside Your Social Hub, so it will not match a calendar's `published` items. A post row carries `ourContentId` only when it went out through Your Social Hub; that is the only id you may pass to `get_content`.
 - **Hub totals only sum accounts that reported**, and `views` appears in the totals but not in the per-account rows. Account-level `engagementInRange` and post-level `reactions`/`comments`/`shares` come from different snapshots and will not add up.

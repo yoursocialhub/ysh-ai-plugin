@@ -14,7 +14,7 @@ Then report exactly this, and nothing more:
 
 - **Hub totals** over the window: followers, posts, engagement, views. Note next to them if any account contributed nothing.
 - **Per account:** name, platform, followers, posts in range, engagement in range.
-- **Accounts with no data:** name and platform, with whether the first collection has landed (`initialMetricsCollectedAt`).
+- **Accounts with no data:** name, platform and `metricsStatus` — still collecting, collection failed, or the platform reports no insights.
 - **Top 3 posts per reporting account:** views, type, publish date, permalink, first line of the caption.
 
 No drill-down, no `get_content`, no second range, no writes. Report `null` as "not collected", never as `0`. If the user wants to dig in, hand off to the `metrics-review` skill; to turn the winners into ideas, `top-posts-to-ideas`.

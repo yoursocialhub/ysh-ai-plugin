@@ -41,7 +41,7 @@ Requires the `admin` role on the hub — the same gate as the metrics dashboard 
 | `get_hub_metrics_overview` | `hubId`, optional `range` | Hub-wide totals — followers, posts, engagement, views — plus the same per-account breakdown |
 | `list_top_performing_posts` | `socialAccountId`, optional `metric`, `range`, `page`, `perPage` | That account's posts in the window, ranked by the chosen metric, with reach, views, reactions, comments, shares, saves and the rest |
 
-A metric a platform does not report comes back `null` and sorts last — `null` means *not collected*, never zero. Live collection currently covers Facebook and Instagram; other connected platforms can return an account row with every number empty until collection reaches them.
+A metric a platform does not report comes back `null` and sorts last — `null` means *not collected*, never zero. Each account carries a `metricsStatus` saying which: `ready`, `pending` (first collection has not landed), `failed`, or `unsupported`. Live collection currently covers Facebook and Instagram; accounts on other platforms stay `pending` until collection reaches them.
 
 ### Writing
 

@@ -34,7 +34,7 @@ Lead with the hub totals, then the per-account breakdown, then the drill-down on
 | Level          | Fields                                                             |
 | -------------- | ------------------------------------------------------------------ |
 | **Hub totals** | `followers`, `posts`, `engagement`, `views`                        |
-| **Per account**| `name`, `accountType`, `followers`, `postsInRange`, `engagementInRange` |
+| **Per account**| `name`, `accountType`, `metricsStatus`, `followers`, `postsInRange`, `engagementInRange` |
 | **Per post**   | the ranking metric, plus `postType`, `publishedAt`, `permalink`, `caption` |
 
 Name accounts by `name` and `accountType`, never by raw id. Attribute every number to its window: "1,240 engagements in the last 30 days", not "1,240 engagements".
@@ -42,8 +42,8 @@ Name accounts by `name` and `accountType`, never by raw id. Attribute every numb
 ## Rules
 
 - **`null` is "not collected", not zero.** Never sum, average or rank a `null` as `0`, and never report "0 followers" for a `null`. Say the number is not available and why: collection has not run for that account yet, or the platform does not report that metric.
-- **`metricsAvailable: true` does not mean numbers exist.** It only says the platform has an insights dashboard. Live collection currently covers Facebook and Instagram; other connected platforms can come back `metricsAvailable: true` with every number `null`. Trust the values and `initialMetricsCollectedAt`, not the flag — `initialMetricsCollectedAt: null` means the first collection has not landed.
-- **Totals cover only accounts that reported.** An account with `null` contributes nothing, so a hub total is not the sum of what the user sees on every platform. If any account is missing data, say which, next to the total.
+- **Read `metricsStatus`, not `metricsAvailable`, to explain a gap.** `ready` means the numbers were collected; `pending` means the first collection has not landed; `failed` means it errored, with `initialMetricsFailedAt` saying when; `unsupported` means the platform has no insights. Name the state — "Instagram is still collecting", "TikTok's collection failed on the 12th" — instead of reporting a blank row. On an older server `metricsStatus` may be absent; fall back to `initialMetricsCollectedAt: null` meaning the first collection has not landed, and never read `metricsAvailable: true` as a promise that numbers exist.
+- **Totals cover only accounts that reported.** An account that is not `ready` contributes nothing, so a hub total is not the sum of what the user sees on every platform. If any account is missing data, say which, next to the total.
 - **`views` exists only in the hub totals.** The per-account rows carry `followers`, `postsInRange` and `engagementInRange` — there is no per-account `views`. Do not divide hub views across accounts.
 - **Account engagement and post reactions come from different snapshots.** `engagementInRange` is an account-level daily figure; the post rows carry their own `reactions`, `comments`, `shares`. They will not add up to each other. Report them side by side, never as a reconciliation.
 - **`postsInRange` counts everything the platform published**, including posts made natively outside Your Social Hub. It is not a count of Content in a calendar, and it will not match `calendar-audit`'s `published` bucket. If the user asks why the numbers differ, that is the reason.
