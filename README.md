@@ -2,7 +2,7 @@
 
 Connects Claude to [Your Social Hub](https://www.yoursocialhub.online) and teaches it how to work there. Works in Claude Cowork and Claude Code.
 
-Reads your hubs, content calendars, content and Ideas Hub entries. Writes ideas and content **drafts**, which always land `in_review`. It cannot publish, schedule, approve, reject or delete anything, and it cannot upload media — a person approving in the Review Portal remains the only path to a live post.
+Reads your hubs, content calendars, content, Ideas Hub entries and the performance metrics of your connected social accounts. Writes ideas and content **drafts**, which always land `in_review`. It cannot publish, schedule, approve, reject or delete anything, and it cannot upload media — a person approving in the Review Portal remains the only path to a live post.
 
 Full capability reference: [info.md](info.md).
 
@@ -38,15 +38,18 @@ Installing and connecting are separate steps, and both are required. Connecting 
 
 | Component                       | What it is                                                                   |
 | ------------------------------- | ---------------------------------------------------------------------------- |
-| MCP connector `your-social-hub` | `https://www.yoursocialhub.online/api/mcp/v1`, OAuth 2.1 with PKCE, 13 tools |
+| MCP connector `your-social-hub` | `https://www.yoursocialhub.online/api/mcp/v1`, OAuth 2.1 with PKCE, 16 tools |
 | Skill `hub-model`                | Domain model, tool map and the traps — background for every other skill      |
 | Skill `connect`                 | Authorization walkthrough and troubleshooting                                |
 | Skill `plan-week`               | Date the Ideas Hub backlog into a week or month                              |
 | Skill `promote-to-review`       | Move finished ideas into the review queue as drafts                          |
 | Skill `calendar-audit`          | Read-only health report on a content calendar                                |
 | Skill `draft-captions`          | Draft or rewrite copy into the Ideas Hub, grounded in existing voice         |
+| Skill `metrics-review`          | Read-only performance report across a hub's connected accounts               |
+| Skill `top-posts-to-ideas`      | Mine the best performing posts into new Ideas Hub entries                    |
 | `/your-social-hub:check`        | Which tools and scopes you actually have                                     |
 | `/your-social-hub:brief`        | Fixed one-screen calendar status                                             |
+| `/your-social-hub:metrics`      | Fixed one-screen performance snapshot                                        |
 | `/your-social-hub:capture`      | One sentence → one idea                                                      |
 
 ## Scopes
@@ -54,11 +57,11 @@ Installing and connecting are separate steps, and both are required. Connecting 
 The connector pins the scopes it requests:
 
 ```
-hubs:read content-calendars:read content:read ideas:read
+hubs:read content-calendars:read content:read ideas:read metrics:read
 content-calendars:write content:write ideas:write offline_access
 ```
 
-The consent screen lets you grant a narrower set. An ungranted scope means its tools are absent from the toolset rather than failing — `/your-social-hub:check` reports exactly what that leaves. `promote_idea_to_content` needs `content:write` **and** `ideas:write`. Widening the pinned set requires a plugin version bump.
+The consent screen lets you grant a narrower set. An ungranted scope means its tools are absent from the toolset rather than failing — `/your-social-hub:check` reports exactly what that leaves. `promote_idea_to_content` needs `content:write` **and** `ideas:write`. The three `metrics:read` tools additionally need the `admin` role on the hub, matching the metrics dashboard in the app. Widening the pinned set requires a plugin version bump.
 
 Revoke any time in Your Social Hub: Profile & Billing → Connected Apps.
 
