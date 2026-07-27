@@ -4,7 +4,7 @@
       "type": "http",
       "url": "https://www.yoursocialhub.online/api/mcp/v1",
       "oauth": {
-        "scopes": "hubs:read content-calendars:read content:read ideas:read content-calendars:write content:write ideas:write offline_access"
+        "scopes": "hubs:read content-calendars:read content:read ideas:read metrics:read content-calendars:write content:write ideas:write offline_access"
       }
     }
   }
