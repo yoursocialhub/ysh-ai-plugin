@@ -21,7 +21,7 @@ This is the boundary between planning and the review queue. Everything it create
 ## Rules
 
 - **Promotion is one-way and irreversible from here.** The idea becomes `sent` and can no longer be edited; there is no delete tool to undo the content.
-- **`promote_idea_to_content` needs both `content:write` and `ideas:write`.** If the tool is absent, that pair was not granted — say so and point at `/your-social-hub:connect`. Do **not** substitute `create_content`: it copies no files and leaves the idea unmarked, so the work ends up duplicated.
+- **`promote_idea_to_content` needs both `content:write` and `ideas:write`.** If the tool is absent, that pair was not granted — say so and ask the user to reconnect with both scopes. Do **not** substitute `create_content`: it copies no files and leaves the idea unmarked, so the work ends up duplicated.
 - **Social accounts are never copied.** Text, planned date and files are; account selection is a human step at review.
 - **Promotion is the path, not `create_content`.** If the user asks for a draft built from scratch rather than from an idea, `create_content` accepts only `post`, `carousel` or `story` — a `thread` or `tiktok` can only reach content by promotion — and every such draft needs the same item-by-item confirmation as step 4 before it is written.
 - **`update_content` works only while `in_review` or `revisions_needed`.** A status error means the item has moved past review — stop and hand off to the app rather than retrying.

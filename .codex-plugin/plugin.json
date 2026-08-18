@@ -1,0 +1,31 @@
+{
+  "name": "your-social-hub",
+  "version": "1.1.0",
+  "description": "Plan, draft, and audit social content in Your Social Hub. Read content calendars and performance metrics, then create drafts that always require human review before publication.",
+  "author": {
+    "name": "Your Social Hub",
+    "email": "info@yoursocialhub.online",
+    "url": "https://www.yoursocialhub.online"
+  },
+  "homepage": "https://www.yoursocialhub.online",
+  "repository": "https://github.com/yoursocialhub/ysh-ai-plugin",
+  "license": "Apache-2.0",
+  "keywords": ["social-media", "content-calendar", "ideas-hub", "content-review", "mcp"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Your Social Hub",
+    "shortDescription": "Plan, draft, and audit social content.",
+    "longDescription": "Read your content calendars and social performance, draft ideas and content for review, and never publish directly.",
+    "developerName": "Your Social Hub",
+    "category": "Productivity",
+    "capabilities": ["Read", "Write"],
+    "websiteURL": "https://www.yoursocialhub.online",
+    "privacyPolicyURL": "https://www.yoursocialhub.online/privacy-policy",
+    "termsOfServiceURL": "https://www.yoursocialhub.online/terms-of-use",
+    "defaultPrompt": [
+      "Audit my content calendar for review blockers.",
+      "Plan next week from my Ideas Hub.",
+      "Show my social performance over the last 30 days."
+    ]
+  }
+}
