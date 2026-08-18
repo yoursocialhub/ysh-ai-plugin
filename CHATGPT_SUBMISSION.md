@@ -13,7 +13,8 @@ This repository contains the portable skills and manifest needed for an OpenAI p
 {
   "apps": {
     "your-social-hub": {
-      "id": "plugin_asdk_app_REPLACE_WITH_CONNECTION_ID"
+      "id": "plugin_asdk_app_REPLACE_WITH_CONNECTION_ID",
+      "required": true
     }
   }
 }
