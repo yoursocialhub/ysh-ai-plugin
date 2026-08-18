@@ -12,7 +12,7 @@ You need three things:
 
 1. **The Claude desktop app**, signed in. Cowork lives inside it.
 2. **A Your Social Hub account** at [yoursocialhub.online](https://www.yoursocialhub.online).
-3. **The `content_creator` or `admin` role in at least one hub.** This matters more than it sounds: a reviewer-only account can complete every step below and still see no data at the end, because the plugin respects exactly the permissions you already have. If you are not sure which role you have, ask whoever set up your hub.
+3. **The `content_creator` or `admin` role in at least one hub.** This matters more than it sounds: a reviewer-only account can complete every step below and list its hubs, but cannot read or change the data inside them. If you are not sure which role you have, ask whoever set up your hub.
 
 You do **not** need to install anything else, use a terminal, or know what MCP or OAuth mean.
 
@@ -120,7 +120,7 @@ If Claude names your hubs, you are done. Everything else — planning a week, au
 | "Marketplace not found", "repository not found", or the plugin will not install after Sync | The address is not a repository address — usually a link copied from the browser | Retype it by hand as `yoursocialhub/ysh-ai-plugin`: one slash, no `https://`, no `.git`, and **no `/tree/main` on the end**. Then Sync again |
 | Plugin installed, but Claude ignores your hub | Installed but not connected | Go back to Step 6 — installing and connecting are separate |
 | Claude says it has no such tools | The connector is disconnected, or permissions were unticked | Run **check**, then reconnect from the plugin's Connectors tab |
-| "You don't have access" on every hub | Your account is reviewer-only | Ask a hub admin for the `content_creator` role |
+| "You don't have access" when opening a calendar, idea or content | Your account is reviewer-only | Ask a hub admin for the `content_creator` role |
 | Claude sees hubs but cannot save ideas or drafts | The write permissions were unticked on the consent screen | Disconnect, connect again, and leave every box ticked |
 | It worked yesterday, not today | The authorization was revoked or expired | Reconnect from the plugin's Connectors tab |
 

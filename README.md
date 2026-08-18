@@ -32,13 +32,13 @@ Use that address exactly — `owner/repo`, nothing else. A browser URL copied fr
 /mcp
 ```
 
-Installing and connecting are separate steps, and both are required. Connecting opens a browser: sign in to Your Social Hub, then tick the scopes on the consent screen. You need the `content_creator` or `admin` role in at least one hub — a reviewer-only account can consent but reaches no data.
+Installing and connecting are separate steps, and both are required. Connecting opens a browser: sign in to Your Social Hub, then tick the scopes on the consent screen. You need the `content_creator` or `admin` role in at least one hub to work with hub data. A reviewer-only account can consent and list the hubs they belong to, but cannot read or change data inside a hub.
 
 ## Contents
 
 | Component                       | What it is                                                                   |
 | ------------------------------- | ---------------------------------------------------------------------------- |
-| MCP connector `your-social-hub` | `https://www.yoursocialhub.online/api/mcp/v1`, OAuth 2.1 with PKCE, 16 tools |
+| MCP connector `your-social-hub` | `https://www.yoursocialhub.online/api/mcp/v1`, OAuth 2.1 with PKCE, 16 tools and 7 read-only resources |
 | Skill `hub-model`                | Domain model, tool map and the traps — background for every other skill      |
 | Skill `connect`                 | Authorization walkthrough and troubleshooting                                |
 | Skill `plan-week`               | Date the Ideas Hub backlog into a week or month                              |

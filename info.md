@@ -57,13 +57,27 @@ A metric a platform does not report comes back `null` and sorts last — `null` 
 
 Data never leaves the field-by-field allowlist above — social-account credentials, tokens and storage keys are stripped before anything reaches the model.
 
+## Resources
+
+Alongside tools, the server exposes seven read-only `ysh://` resources for attaching unfiltered context. Collections return their first 50 items; use the corresponding tools for filtering or paging.
+
+| Resource | Scope | Gives back |
+| --- | --- | --- |
+| `ysh://hubs` | `hubs:read` | Every hub you belong to and your role |
+| `ysh://hub/{hubId}/calendars` | `content-calendars:read` | A hub's content calendars |
+| `ysh://calendar/{calendarId}` | `content-calendars:read` | A calendar brief, with content and ideas included only when their read scopes were granted |
+| `ysh://calendar/{calendarId}/content` | `content:read` | Content in a calendar |
+| `ysh://content/{contentId}` | `content:read` | One content item in full, including recently deleted files |
+| `ysh://calendar/{calendarId}/ideas` | `ideas:read` | Ideas in a calendar |
+| `ysh://idea/{ideaId}` | `ideas:read` | One idea in full, including recently deleted files |
+
 ## Scopes
 
 You tick these individually on the consent screen. An ungranted scope does not make its tools fail; it makes them **absent**, so Claude cannot call them at all.
 
 | Scope | Grants |
 | --- | --- |
-| `hubs:read` | `list_hubs` — required for everything else |
+| `hubs:read` | `list_hubs` and `ysh://hubs`; lets the plugin discover hub ids for its workflows |
 | `content-calendars:read` | `list_content_calendars` |
 | `content:read` | `list_content`, `get_content` |
 | `ideas:read` | `list_ideas`, `get_idea` |
@@ -74,7 +88,7 @@ You tick these individually on the consent screen. An ungranted scope does not m
 | `content:write` + `ideas:write` | `promote_idea_to_content` |
 | either write scope | `restore_file`, for files on the matching side |
 
-Beyond scopes, every call is checked against your hub membership: you need the `content_creator` or `admin` role in the hub that owns the data, and `admin` specifically for the metrics tools. A reviewer-only account can connect but will reach nothing.
+Beyond scopes, every hub-addressed call is checked against your hub membership: you need the `content_creator` or `admin` role in the hub that owns the data, and `admin` specifically for the metrics tools. A reviewer-only account can still list the hubs they belong to, but cannot read or change data inside one.
 
 ## What it cannot do, by design
 
