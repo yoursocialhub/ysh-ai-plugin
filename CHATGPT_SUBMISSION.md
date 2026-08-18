@@ -13,13 +13,14 @@ This repository contains the portable skills and manifest needed for an OpenAI p
 {
   "apps": {
     "your-social-hub": {
-      "id": "plugin_asdk_app_REPLACE_WITH_CONNECTION_ID"
+      "id": "plugin_asdk_app_REPLACE_WITH_CONNECTION_ID",
+      "required": true
     }
   }
 }
 ```
 
-5. Add `"apps": ["./.app.json"]` to `.codex-plugin/plugin.json` and test the plugin from the local marketplace in a new ChatGPT conversation.
+5. Add `"apps": "./.app.json"` to `.codex-plugin/plugin.json` and test the plugin from the local marketplace in a new ChatGPT conversation.
 
 Do not commit a real connection ID unless it is intended to be public and reusable by other developers.
 
