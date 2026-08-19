@@ -38,7 +38,7 @@ Installing and connecting are separate steps, and both are required. Connecting 
 
 | Component                       | What it is                                                                   |
 | ------------------------------- | ---------------------------------------------------------------------------- |
-| MCP connector `your-social-hub` | `https://www.yoursocialhub.online/api/mcp/v1`, OAuth 2.1 with PKCE, 16 tools and 7 read-only resources |
+| MCP connector `your-social-hub` | `https://www.yoursocialhub.online/api/mcp/v1`, OAuth 2.1 with PKCE, 17 tools and 7 read-only resources |
 | Skill `hub-model`                | Domain model, tool map and the traps — background for every other skill      |
 | Skill `connect`                 | Authorization walkthrough and troubleshooting                                |
 | Skill `plan-week`               | Date the Ideas Hub backlog into a week or month                              |
@@ -61,7 +61,7 @@ hubs:read content-calendars:read content:read ideas:read metrics:read
 content-calendars:write content:write ideas:write offline_access
 ```
 
-The consent screen lets you grant a narrower set. An ungranted scope means its tools are absent from the toolset rather than failing — `/your-social-hub:check` reports exactly what that leaves. `promote_idea_to_content` needs `content:write` **and** `ideas:write`. The three `metrics:read` tools additionally need the `admin` role on the hub, matching the metrics dashboard in the app. Widening the pinned set requires a plugin version bump.
+The consent screen lets you grant a narrower set. An ungranted scope means its tools are absent from the toolset rather than failing — `/your-social-hub:check` reports exactly what that leaves. `promote_idea_to_content` needs `content:write` **and** `ideas:write`; `render_social_preview` needs the matching `ideas:read` or `content:read` scope. The three `metrics:read` tools additionally need the `admin` role on the hub, matching the metrics dashboard in the app. Widening the pinned set requires a plugin version bump.
 
 Revoke any time in Your Social Hub: Profile & Billing → Connected Apps.
 

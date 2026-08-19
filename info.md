@@ -30,6 +30,7 @@ Sign-in happens in your browser, on the Your Social Hub domain. The plugin never
 | `get_content` | `id` | One content item in full, plus files deleted in the last 24h |
 | `list_ideas` | `contentCalendarId`, optional `status`, `tab`, `search`, `startDate`, `endDate` | Ideas in that calendar (not paginated) |
 | `get_idea` | `id` | One idea in full, plus files deleted in the last 24h |
+| `render_social_preview` | `entityType` (`idea` or `content`), `id` | An in-chat, read-only preview of the item in its selected social-platform frame |
 
 ### Reading metrics
 
@@ -79,8 +80,8 @@ You tick these individually on the consent screen. An ungranted scope does not m
 | --- | --- |
 | `hubs:read` | `list_hubs` and `ysh://hubs`; lets the plugin discover hub ids for its workflows |
 | `content-calendars:read` | `list_content_calendars` |
-| `content:read` | `list_content`, `get_content` |
-| `ideas:read` | `list_ideas`, `get_idea` |
+| `content:read` | `list_content`, `get_content`, `render_social_preview` for Content |
+| `ideas:read` | `list_ideas`, `get_idea`, `render_social_preview` for Ideas |
 | `metrics:read` | `list_social_accounts`, `get_hub_metrics_overview`, `list_top_performing_posts` — hub role `admin` on top of the scope |
 | `content-calendars:write` | `create_content_calendar` |
 | `content:write` | `create_content`, `update_content` |
@@ -104,6 +105,7 @@ Beyond scopes, every hub-addressed call is checked against your hub membership: 
 - "Plan next week from the Ideas Hub." — proposes dates for undated ideas, checks the slots against content already scheduled, then writes the dates back.
 - "Draft five carousel ideas for the launch, in our usual voice." — reads recent entries for tone and conventions first, shows the batch for approval, then saves them.
 - "These three ideas are ready — send them for review." — promotes each into a draft, and tells you what a person still has to do in the app.
+- "Show me how this idea will look on Instagram and LinkedIn." — renders its current caption, media and selected platform personas in an in-chat preview; it never publishes.
 - "How did the accounts do this month?" — hub totals and a per-account breakdown over 7, 30 or 90 days, with the accounts that reported no data named rather than counted as zero.
 - "What worked best, and give me more of it." — ranks posts by reach, saves, shares or clicks, works out what the winners have in common, and writes the follow-ups into the Ideas Hub.
 

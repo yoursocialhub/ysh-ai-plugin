@@ -27,8 +27,54 @@ The loop is: rank posts → work out *why* they won → propose ideas → write 
 4. Pull the losers too: the same call sorted by the same metric gives you the tail on the last page. A pattern is only real if the bottom does *not* share it.
 5. `get_content(ourContentId)` on winners that carry one — those were published through Your Social Hub, so you get the full caption, type and file list. Posts without `ourContentId` were posted natively; `caption`, `thumbnailUrl` and `permalink` are all there is.
 6. Say what the pattern is, in one paragraph, with the posts that support it. Formats, hooks, lengths, topics, posting cadence — whatever the data actually shows.
-7. Propose the ideas as a table: title, type, caption, hashtags, cta, planned date, **and the post each one is modelled on**. That last column is the point of this skill; without it this is just `draft-captions`.
-8. On explicit approval, write one `create_idea(contentCalendarId, …)` per row into the calendar the user names, and report the ids.
+7. Read the destination calendar with `list_content_calendars(hubId)` before drafting. Its `pillars` and `formats` arrays are the only authoritative source for their ids. Use a listed id only when the classification is a good fit; never make one up.
+8. Propose production-ready ideas as a table: title, type, pillar, format, target platforms, caption, hashtags, CTA, source post and provenance. Say what is source-derived, AI-recommended and (only if used) externally verified.
+9. On explicit approval, write one rich `create_idea(contentCalendarId, …)` per row into the calendar the user names. When available, call `render_social_preview(entityType: 'idea', id: ideaId)` for each created idea so the user can inspect its platform frame. Do not regenerate or overwrite a previously edited idea unless the user explicitly asks.
+
+## Rich idea payload
+
+Every idea made from a metric post is a draft for review, not a rough placeholder. Fill every field that can be grounded safely:
+
+- **title** — a concise working title, specific to the new angle.
+- **notes** — use the exact headings below. `Source-derived` contains only data returned by YSH; `AI recommendation` is clearly framed as a test, never as a performance guarantee; `Verified external references` is omitted unless links were actually retrieved and verified.
+
+  ```text
+  Source-derived
+  - Original account/platform: …
+  - Original post: … (only when the returned permalink is non-empty)
+  - Caption/hashtags: … (only facts returned by the source)
+  - Performance snapshot: … (include only non-null metrics returned by YSH)
+
+  Why this likely resonated
+  - …
+
+  Winning hook or pattern
+  - …
+
+  AI recommendation
+  - Proposed angle: …
+  - Target audience: …
+  - Tone of voice: …
+  - Key message: …
+  - Suggested structure: …
+  - Visual guidance: …
+  ```
+
+  For `tiktok` ideas and Reels, also add a 3–6 beat outline and exact suggested on-screen-text *ideas*. No media is attached or implied; describe footage, scene references, cover text or carousel slides here instead.
+- **refLink** — set it to the returned source `permalink` only. Leave it absent when that field is null or empty. A richer references list belongs in `notes`; do not invent a URL, account handle, metric, caption or hashtag.
+- **pillarId** — infer only from the calendar's existing `Meme`, `Promotional`, `Viral`, `Educational` or `Behind-the-scenes` pillar. If the inference is not clear, omit it and state the recommendation in Notes.
+- **formatId** and **type** — use the source post type and observed pattern as the primary signal. Map a short vertical video to the existing `Reel` format and `tiktok` type where appropriate; map multi-card posts to `Carousel`; use `Single image` or `Static graphic` only for a matching non-video source. Omit a missing calendar format rather than guessing an id.
+- **socialAccountIds** — include the selected source Social Account. Add connected accounts for compatible cross-posting only when the asset and platform fit (for example, a vertical short-form video may include Instagram and TikTok); do not turn a Threads-style text post into a Reel. These are editable recommendations, not publication instructions.
+- **caption**, **hashtags**, **cta** — create a fresh, editable draft in the account's observed voice. Use a strong original hook and preserve the winning pattern without copying the source wording. Extract source hashtags when present, deduplicate them, then add only a small relevant platform-appropriate set; avoid generic spam tags. The CTA must be specific to the proposed post.
+
+Use `create_idea` with `title`, `notes`, `refLink`, `pillarId`, `formatId`, `socialAccountIds`, `caption`, `hashtags` and `cta` whenever they are available. All values remain editable in Ideas Hub.
+
+## References and provenance
+
+- A source post is a YSH-returned metric row, not an external web search result. Preserve its permalink in `refLink` and its available context in `notes`.
+- Include an external reference only after actually retrieving it. Record its title, URL and one sentence explaining relevance under `Verified external references`; never output a plausible-looking link.
+- If `get_content(ourContentId)` supplies fuller source data, use it, but still distinguish it from the proposed copy and visual direction.
+- Captions, hashtags, URLs and metrics missing from the source remain missing. Do not fill a gap with a guess.
 
 ## Rules
 
