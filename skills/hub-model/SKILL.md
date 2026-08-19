@@ -46,13 +46,13 @@ Only `approved` **with** a `publicationDate` is actually armed to go out. `appro
 
 | Tool                      | Scope                                 | Returns                                                   |
 | ------------------------- | ------------------------------------- | --------------------------------------------------------- |
-| `list_hubs`               | `hubs:read`                           | Array of `{id, name, yourRole, createdAt}`. No arguments. |
+| `list_hubs`               | `hubs:read`                           | `{items}` with `{id, name, yourRole, createdAt}` rows. No arguments. |
 | `list_content_calendars`  | `content-calendars:read`              | `{items, total, page, perPage}`                           |
 | `list_content`            | `content:read`                        | `{items, total, page, perPage}`                           |
 | `get_content`             | `content:read`                        | One content item + `recentlyDeleted`                      |
-| `list_ideas`              | `ideas:read`                          | A bare array — **no pagination**                          |
+| `list_ideas`              | `ideas:read`                          | `{items}` — **no pagination**                             |
 | `get_idea`                | `ideas:read`                          | One idea + `recentlyDeleted`                              |
-| `list_social_accounts`    | `metrics:read` — **`admin` only**     | A bare array of accounts + snapshot — **no pagination**   |
+| `list_social_accounts`    | `metrics:read` — **`admin` only**     | `{items}` of accounts + snapshots — **no pagination**     |
 | `get_hub_metrics_overview`| `metrics:read` — **`admin` only**     | `{totals, accounts}` for the whole hub                    |
 | `list_top_performing_posts`| `metrics:read` — **`admin` only**    | `{items, total, page, perPage}`, ranked, nulls last       |
 | `create_content_calendar` | `content-calendars:write`             | The new calendar                                          |

@@ -56,7 +56,7 @@ Call `list_hubs`. Then list which of the 16 tools are actually present and tell 
 | `"Not found, or you do not have access to it."`        | Wrong id, another user's hub, or no `content_creator` role | Check the id and the membership in the app. Do not retry with other ids          |
 | The same error from the metrics tools only             | The role is `content_creator`; metrics need `admin`        | Ask a hub admin to raise the role, or run the metrics dashboard in the app       |
 | Calendar workflows cannot find a calendar              | `content-calendars:read` was not granted                   | Re-authorize and approve "See your content calendars"                           |
-| `list_hubs` returns `[]`                               | The account belongs to no hub                              | Create or join a hub in the app                                                  |
+| `list_hubs` returns `{items: []}`                       | The account belongs to no hub                              | Create or join a hub in the app                                                  |
 | 401 mid-session                                        | Token expired, or the Connection was revoked               | Re-authenticate; check Profile & Billing → Connected Apps                        |
 | `restore_file` errors with "content:write is required" | Only `ideas:write` was granted                             | Re-authorize with both write scopes                                              |
 | Server unreachable / connection failed                 | Endpoint or network, not consent                           | Confirm <https://yoursocialhub.online> is up; retry the connect                  |
