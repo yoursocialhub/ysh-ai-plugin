@@ -29,7 +29,7 @@ The loop is: rank posts → work out *why* they won → propose ideas → write 
 6. Say what the pattern is, in one paragraph, with the posts that support it. Formats, hooks, lengths, topics, posting cadence — whatever the data actually shows.
 7. Read the destination calendar with `list_content_calendars(hubId)` before drafting. Its `pillars` and `formats` arrays are the only authoritative source for their ids. Use a listed id only when the classification is a good fit; never make one up.
 8. Propose production-ready ideas as a table: title, type, pillar, format, target platforms, caption, hashtags, CTA, source post and provenance. Say what is source-derived, AI-recommended and (only if used) externally verified.
-9. On explicit approval, write one rich `create_idea(contentCalendarId, …)` per row into the calendar the user names, and report the ids. Do not regenerate or overwrite a previously edited idea unless the user explicitly asks.
+9. On explicit approval, write one rich `create_idea(contentCalendarId, …)` per row into the calendar the user names. When available, call `render_social_preview(entityType: 'idea', id: ideaId)` for each created idea so the user can inspect its platform frame. Do not regenerate or overwrite a previously edited idea unless the user explicitly asks.
 
 ## Rich idea payload
 

@@ -42,7 +42,7 @@ Ids are opaque strings. Never guess one, never construct one, never carry an id 
 
 Only `approved` **with** a `publicationDate` is actually armed to go out. `approved` with no date will never publish; that is worth flagging whenever you see it.
 
-## The 16 tools
+## The 17 tools
 
 | Tool                      | Scope                                 | Returns                                                   |
 | ------------------------- | ------------------------------------- | --------------------------------------------------------- |
@@ -61,9 +61,12 @@ Only `approved` **with** a `publicationDate` is actually armed to go out. `appro
 | `create_content`          | `content:write`                       | The new content (`status: in_review`)                     |
 | `update_content`          | `content:write`                       | The updated content                                       |
 | `promote_idea_to_content` | `content:write` **and** `ideas:write` | The new content (`in_review`); the idea becomes `sent`    |
+| `render_social_preview` | `ideas:read` or `content:read` | A ChatGPT preview widget for one Idea or Content item |
 | `restore_file`            | either write scope, but per file      | `{restored: true}`                                        |
 
 `restore_file` appears as soon as one write scope is granted, then refuses per call for files on the other side: restoring a content file needs `content:write`, an idea file needs `ideas:write`. Check which scope the file's parent needs before promising a restore — the window is only 24 hours.
+
+`render_social_preview` renders a selected Idea or Content in an in-chat platform frame. It requires the matching read scope (`ideas:read` for an Idea, `content:read` for Content); it may be absent even when a write tool is available because scopes are granted independently. The tool only generates a visual preview and never publishes.
 
 ## The 7 read-only resources
 

@@ -15,8 +15,8 @@ New copy lands as Ideas — planning-only, never published. Getting it into the 
 2. **Ground the voice first.** `list_ideas(contentCalendarId, search: …)` or by `status`, then `get_idea` on two or three recent entries. Pick up tone, caption length, hashtag conventions and CTA style, and say which entries you drew from. Skipping this produces generic copy that reads as not-theirs.
 3. Draft in chat. Show the batch as a table: title, type, caption, hashtags, cta, refLink, planned date.
 4. Get approval on the table before any write — every row, every time, one row included.
-5. Write: one `create_idea` per row, sequentially. Report the ids.
-6. Rewrites of existing ideas go through `update_idea` on the same fields.
+5. Write: one `create_idea` per row, sequentially. When `render_social_preview` is available, render each newly created idea in its platform frame. Report the ids.
+6. Rewrites of existing ideas go through `update_idea` on the same fields; render the updated idea when the user asks to inspect the result.
 
 ## Rules
 

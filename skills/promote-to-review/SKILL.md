@@ -17,7 +17,8 @@ This is the boundary between planning and the review queue. Everything it create
    - For a legacy rough idea, draft the missing caption, hashtags, CTA, classification and visual guidance from the existing title/notes, show the proposed fields, obtain explicit approval, then use `update_idea` **only for missing fields**. Preserve every non-empty user field. If source metadata is absent, do not invent it.
 4. Confirm the shortlist item by item. Never promote in bulk off a single "yes".
 5. `promote_idea_to_content(ideaId)` per confirmed idea.
-6. Report the new content id, its `in_review` status, and what a person still has to do in the app: pick social accounts, upload or check media, approve.
+6. Call `render_social_preview(entityType: 'content', id: contentId)` when that tool is available, so the user can inspect the review draft in its target-platform frame.
+7. Report the new content id, its `in_review` status, and what a person still has to do in the app: check the proposed social accounts and media, then approve.
 
 ## Rules
 
