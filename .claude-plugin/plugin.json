@@ -11,5 +11,7 @@
   "homepage": "https://www.yoursocialhub.online",
   "repository": "https://github.com/yoursocialhub/ysh-ai-plugin",
   "license": "Apache-2.0",
-  "keywords": ["social-media", "content-calendar", "ideas-hub", "content-review", "mcp"]
+  "keywords": ["social-media", "content-calendar", "ideas-hub", "content-review", "mcp"],
+  "icon": "./.claude-plugin/icon.png",
+  "privacyPolicyUrl": "https://www.yoursocialhub.online/privacy-policy"
 }
